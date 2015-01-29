@@ -2,7 +2,7 @@
  
 #include <AccelStepper.h>
  
-int motorSpeed = 600; //maximum steps per second (about 3rps / at 16 microsteps)
+int motorSpeed = 500; //maximum steps per second
 int motorAccel = 10000; //steps/second/second to accelerate
  
 int motorDirPin = 14;
@@ -11,7 +11,7 @@ int endSwitchPin = 16;
 volatile int state = LOW;  
  
 //set up the accelStepper intance
-//the "1" tells it we are using a driver
+//the "1" tells it we are using a motor controller
 AccelStepper stepper(1, motorStepPin, motorDirPin); 
  
  
@@ -24,7 +24,7 @@ void setup(){
  stepper.setSpeed(motorSpeed);
  stepper.setAcceleration(motorAccel);
  
- stepper.moveTo(2000); //move 32000 steps (should be 10 rev)
+ stepper.moveTo(2000); //go to the endswitch
 }
  
 void loop(){
@@ -32,22 +32,21 @@ void loop(){
 		 //if stepper is at desired location
 		 if (stepper.distanceToGo() == 0)
 		 {
-		  //go the other way the same amount of steps
-		  //so if current position is 400 steps out, go position -400
+		  //go from -180deg to +180deg and from +180deg to -180deg
 		  stepper.moveTo(-stepper.currentPosition()); 
 		 }
 		}
-	 if (digitalRead(endSwitchPin) == LOW && state==LOW)
+	 if (digitalRead(endSwitchPin) == LOW && state==LOW) //if stepper is at endswitch
 	 {
 	 	stepper.stop();
 	 	stepper.setCurrentPosition(0);
-	 	stepper.moveTo(-450); //-730 steps is 360deg  140 steps up/down
+	 	stepper.moveTo(-430); //
 	 	while(stepper.distanceToGo() != 0)
 	 	{
 	 		stepper.run();
 	 	}
-	 	stepper.setCurrentPosition(0);
-	 	stepper.moveTo(-140);
+	 	stepper.setCurrentPosition(0); //set new null position
+	 	stepper.moveTo(-360); //rotate 360 steps to left (180deg)
 	 	state=HIGH;
 	 }
 	 else
