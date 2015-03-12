@@ -63,7 +63,7 @@ void loop(){
 	 	stepper.run(); //these must be called as often as possible to ensure smooth operation any delay will cause jerky motion
 
 	 	currentposition = mystepper.currentPosition();
-	 	if ((currentposition % stepwidth) == 0) //run if currentposition is on the stepwidth
+	 	if (((currentposition / 2 ) % stepwidth) == 0) //run if currentposition is on the stepwidth
 	 	{
 	 		unsigned int uS = sonar.ping(); // Send ping, get ping time in microseconds (uS). 29ms should be the shortest delay between pings.
 			Serial.print("{");
