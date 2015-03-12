@@ -4,7 +4,7 @@
  
 #define TRIGGER_PIN  20  //A2
 #define ECHO_PIN     21  //A3
-#define MAX_DISTANCE 200 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
+#define MAX_DISTANCE 300 // Maximum distance we want to ping for (in centimeters). Maximum sensor distance is rated at 400-500cm.
 
 #define motorDirPin = 14;
 #define motorStepPin = 15;
