@@ -21,7 +21,7 @@ void loop()
    {
       Serial.print("{"); //object at a distance of 50cm
       Serial.print(deg); //object at a distance of 50cm
-      Serial.println(",50}"); //object at a distance of 50cm
+      Serial.println(",100}"); //object at a distance of 50cm
       delay(delay_ms);
    } 
-}
+} 

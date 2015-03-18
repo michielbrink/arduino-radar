@@ -5,8 +5,8 @@
 int motorSpeed = 500; //maximum steps per second
 int motorAccel = 10000; //steps/second/second to accelerate
  
-int motorDirPin = 14;
-int motorStepPin = 15;
+int motorDirPin = 18;
+int motorStepPin = 19;
 int endSwitchPin = 16;
 volatile int state = LOW;  
  
